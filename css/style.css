@@ -1,3 +1,32 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Segoe UI, system-ui, Arial, sans-serif;
+  margin: 40px auto;
+  max-width: 980px;
+  padding: 0 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
 :root{
   --text:#0f172a;
   --muted:#64748b;
