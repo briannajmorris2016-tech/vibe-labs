@@ -1,1 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lab 2 — Vibe Apps in Power Platform</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script defer src="../js/site.js"></script>
+</head>
 
+<body>
+  <header class="site-header" data-include="header"></header>
+
+  <main class="container">
+    <div class="breadcrumbs">
+      <a href="../index.html">← Back to Labs</a>
+      <span class="sep">•</span>
+      <a href="../assets/pdf/Lab-2-Vibe-Apps-in-Power-Platform.pdf">Open PDF</a>
+    </div>
+
+    <section class="lab-header">
+      <h1>Vibe Apps in Power Platform</h1>
+      <p class="lead">
+        Build a centralized Device Ordering solution using natural language guidance, AI-assisted UI generation,
+        automated logic creation, and Dataverse-backed data with built-in security, RBAC, and scale.
+      </p>
+
+      <div class="meta">
+        <div><strong>Level:</strong> Intelligent Apps and Agents</div>
+        <div><strong>Persona:</strong> 100 (All Makers)</div>
+        <div><strong>Estimated duration:</strong> 75 minutes</div>
+        <div><strong>Audience assumptions:</strong> Power Apps Premium Licensed Users</div>
+        <div><strong>Author / team:</strong> Power CAT</div>
+        <div><strong>Last updated:</strong> 2026-03-04</div>
+        <div><strong>Version:</strong> v5</div>
+      </div>
+
+      <div class="lab-actions">
+        <a class="btn" href="#start">Start</a>
+        <a class="btn btn-secondary" href="https://learn.microsoft.com/en-us/power-apps/vibe/overview">Vibe overview (Learn)</a>
+      </div>
+
+      <div class="callout callout-warning">
+        <strong>Important:</strong> Power Apps vibe is a preview feature and isn’t intended for production use; it may have restricted functionality. 
+        Also, this capability isn’t available in the Default environment. 
+        <span class="small">See Microsoft Learn for prerequisites and limitations.</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="toc">
+        <div class="toc-title">Contents</div>
+        <nav>
+          <a href="#overview">Lab Overview</a>
+          <a href="#concepts">Core Concepts</a>
+          <a href="#resources">Documentation & Learning Resources</a>
+          <a href="#prereqs">Prerequisites</a>
+          <a href="#steps">Lab Steps</a>
+        </nav>
+      </aside>
+
+      <article class="content">
+
+        <h2 id="overview">Lab Overview</h2>
+        <p>
+          This lab demonstrates how Vibe Power Apps enables you to build a Device Ordering app using natural language guidance,
+          AI-assisted UI generation, and automated logic creation, backed by Dataverse and supported with security and governance.
+        </p>
+
+        <h2 id="concepts">Core Concepts</h2>
+        <div class="callout callout-info">
+          <strong>Vibe apps bring together:</strong>
+          <ul>
+            <li>Agents that generate UI, logic, and data (resulting in a full-stack React app)</li>
+            <li>Dataverse as the primary data store</li>
+            <li>Managed platform capabilities for scaled deployment and governance</li>
+          </ul>
+        </div>
+
+        <h3>Concepts (why they matter)</h3>
+        <ul>
+          <li><strong>Agent-generated UI:</strong> accelerates app delivery by generating pages, forms, and logic from natural language.</li>
+          <li><strong>Business logic via natural language:</strong> creates validation, conditional formatting, and patterns by interpreting intent.</li>
+          <li><strong>ALM:</strong> every Vibe app lives in a Dataverse Solution by default and can be promoted to downstream environments.</li>
+        </ul>
+
+        <h2 id="resources">Documentation & Learning Resources</h2>
+        <ul>
+          <li><a href="https://learn.microsoft.com/en-us/power-apps/vibe/overview">Overview of the new Power Apps vibe experience (preview)</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/power-apps/vibe/create-app-data-plan">Create apps, data, and plans together using vibe (preview)</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/power-platform/admin/database-security">Role-based security roles for Dataverse</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/power-apps/maker/common/faq-vibe">FAQ for Power Apps vibe experience (preview)</a></li>
+        </ul>
+
+        <div class="callout callout-tip">
+          <strong>Known limitations:</strong> Microsoft documents limitations such as no Canvas/model-driven app support in the new authoring experience,
+          and restrictions around direct code edits and certain plan behaviors. Review before running the lab at scale.
+        </div>
+
+        <h2 id="prereqs">Prerequisites</h2>
+        <ul>
+          <li>Power Apps Premium licensed users</li>
+          <li>Environment where you can create solutions and use Dataverse</li>
+          <li>Tenant prerequisites for Copilot/vibe enabled (see Learn)</li>
+        </ul>
+
+        <div class="callout callout-warning">
+          <strong>Reminder:</strong> Vibe is not supported in the Default environment.
+          Ensure participants are using a non-default environment and that the environment name matches in the Vibe UI.
+        </div>
+
+        <h2 id="steps">Lab Steps</h2>
+
+        <!-- STEP 1 -->
+        <section class="step" id="step-01">
+          <div class="step-head">
+            <div class="step-num">1</div>
+            <div class="step-title">Create a new solution</div>
+          </div>
+          <p>In Power Apps, create a new solution named <code>Device Ordering Solution</code>.</p>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="step" id="step-02">
+          <div class="step-head">
+            <div class="step-num">2</div>
+            <div class="step-title">Create a publisher</div>
+          </div>
+          <p>Create a new publisher named <code>Contoso</code> and click <strong>Save</strong>.</p>
+        </section>
+
+        <!-- STEP 3 -->
+        <section class="step" id="step-03">
+          <div class="step-head">
+            <div class="step-num">3</div>
+            <div class="step-title">Set as preferred solution</div>
+          </div>
+          <p>Set <code>Device Ordering Solution</code> as your <strong>preferred solution</strong> and create as shown in the lab screenshot.</p>
+          <div class="callout callout-info">
+            <strong>Note:</strong> When you set a preferred solution, all components generated by Vibe—including plans, code apps, and data assets—
+            are created inside that solution. Any new components created later will also be added automatically in the same solution.
+          </div>
+        </section>
+
+        <!-- STEP 4 -->
+        <section class="step" id="step-04">
+          <div class="step-head">
+            <div class="step-num">4</div>
+            <div class="step-title">Open vibe.powerapps.com and confirm environment</div>
+          </div>
+          <ol>
+            <li>Navigate to <a href="https://vibe.powerapps.com">https://vibe.powerapps.com</a></li>
+            <li>Confirm the environment name in the bottom-left corner matches the environment where the solution was created.</li>
+          </ol>
+          <div class="callout callout-warning">
+            <strong>Tip:</strong> Vibe is NOT supported for the Default environment.
+          </div>
+        </section>
+
+        <!-- STEP 5 -->
+        <section class="step" id="step-05">
+          <div class="step-head">
+            <div class="step-num">5</div>
+            <div class="step-title">Review the Vibe home experience</div>
+          </div>
+          <p>Explore suggested prompts and navigation options:</p>
+          <ul>
+            <li><strong>Home:</strong> where you start vibing</li>
+            <li><strong>Plans:</strong> your past plans created through vibe</li>
+            <li><strong>Apps:</strong> list of vibe-created apps</li>
+            <li><strong>Profile & Environment picker:</strong> logged in profile + current environment</li>
+            <li><strong>Prompt box:</strong> enter your prompt to start creating</li>
+            <li><strong>Submit button:</strong> kicks off creation</li>
+            <li><strong>Sample prompts gallery:</strong> try sample prompts</li>
+          </ul>
+        </section>
+
+        <!-- STEP 6 -->
+        <section class="step" id="step-06">
+          <div class="step-head">
+            <div class="step-num">6</div>
+            <div class="step-title">Submit the prompt to generate the device ordering app</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-06">Copy</button>
+            </div>
+            <pre id="prompt-06"><code>Create a centralized device ordering solution that allows employees to browse available devices and submit device procurement requests. The solution should provide real-time visibility into the device inventory and status of submitted orders, improving efficiency and transparency across the organization.</code></pre>
+          </div>
+
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> Keep prompts high-level. Vibe is designed for iterative refinement.
+          </div>
+        </section>
+
+        <!-- STEP 7 -->
+        <section class="step" id="step-07">
+          <div class="step-head">
+            <div class="step-num">7</div>
+            <div class="step-title">Observe the agents while they build</div>
+          </div>
+          <p>Watch the left-side chat panel as agents gather requirements, design the data model, generate a plan, and build the app.</p>
+          <ul>
+            <li>Make in-context edits as you continue to build while everything else stays steady.</li>
+            <li>Small changes add up—each pass moves the app closer to the desired outcome.</li>
+            <li>Turn on <strong>Code view</strong> to see how your app is being built (without impacting the process).</li>
+            <li>Add existing tables from the <strong>Data</strong> tab to shape app behavior.</li>
+          </ul>
+        </section>
+
+        <!-- STEP 8 -->
+        <section class="step" id="step-08">
+          <div class="step-head">
+            <div class="step-num">8</div>
+            <div class="step-title">Review the splash widget</div>
+          </div>
+          <p>The splash widget showcases capabilities of the Vibe designer interface while agents build the plan, data model, and React app.</p>
+        </section>
+
+        <!-- STEP 9 -->
+        <section class="step" id="step-09">
+          <div class="step-head">
+            <div class="step-num">9</div>
+            <div class="step-title">Review the generated Device Catalog App</div>
+          </div>
+          <div class="callout callout-info">
+            <strong>Tip:</strong> Apps generated through generative AI will have variance—iteration matters to reach an acceptable outcome.
+          </div>
+          <p>Add screenshots to <code>assets/img/lab2/</code> and reference them here as you capture your “expected” app variant.</p>
+        </section>
+
+        <!-- STEP 10 -->
+        <section class="step" id="step-10">
+          <div class="step-head">
+            <div class="step-num">10</div>
+            <div class="step-title">Open Plan view and review plan artifacts</div>
+          </div>
+          <p>Review the problem statement, personas, data model, and supporting agents.</p>
+          <div class="callout callout-info">
+            <strong>Note:</strong> You can edit user roles and data model to align with business requirements.
+          </div>
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> User roles are conceptual only—Dataverse security roles control access (RBAC) after build-out.
+          </div>
+        </section>
+
+        <!-- STEP 11 -->
+        <section class="step" id="step-11">
+          <div class="step-head">
+            <div class="step-num">11</div>
+            <div class="step-title">Open Data Model view and review generated tables</div>
+          </div>
+          <div class="callout callout-info">
+            <strong>Note:</strong> Generated tables/schemas/relationships can vary (AI-generated). Update via data agent or manually.
+          </div>
+        </section>
+
+        <!-- STEP 12 -->
+        <section class="step" id="step-12">
+          <div class="step-head">
+            <div class="step-num">12</div>
+            <div class="step-title">View Device table sample data</div>
+          </div>
+          <ol>
+            <li>Select the <strong>Device</strong> table</li>
+            <li>Ellipsis (…) → <strong>View Data</strong></li>
+            <li>Confirm ~5 rows of sample data and review columns</li>
+          </ol>
+        </section>
+
+        <!-- STEP 13 -->
+        <section class="step" id="step-13">
+          <div class="step-head">
+            <div class="step-num">13</div>
+            <div class="step-title">Add ~15 additional rows of sample data</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-13">Copy</button>
+            </div>
+            <pre id="prompt-13"><code>Add 15 rows of sample data to the Device table</code></pre>
+          </div>
+
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> Sample data is critical for validating UX and business logic during development.
+          </div>
+        </section>
+
+        <!-- STEP 14 -->
+        <section class="step" id="step-14">
+          <div class="step-head">
+            <div class="step-num">14</div>
+            <div class="step-title">Remove Employee table</div>
+          </div>
+          <p>Next you’ll bring in data from an existing Dataverse table. Remove the <strong>Employee</strong> table from the model.</p>
+        </section>
+
+        <!-- STEP 15 -->
+        <section class="step" id="step-15">
+          <div class="step-head">
+            <div class="step-num">15</div>
+            <div class="step-title">Add the existing User table</div>
+          </div>
+          <ol>
+            <li>Select <strong>Add Table</strong></li>
+            <li>Select <strong>Existing Dataverse table</strong></li>
+          </ol>
+        </section>
+
+        <!-- STEP 16 -->
+        <section class="step" id="step-16">
+          <div class="step-head">
+            <div class="step-num">16</div>
+            <div class="step-title">Search and add User table</div>
+          </div>
+          <ol>
+            <li>Search for <strong>User</strong></li>
+            <li>Select it</li>
+            <li>Click <strong>Add Selected</strong></li>
+          </ol>
+        </section>
+
+        <!-- STEP 17 -->
+        <section class="step" id="step-17">
+          <div class="step-head">
+            <div class="step-num">17</div>
+            <div class="step-title">Create relationship: Requesting User lookup</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-17">Copy</button>
+            </div>
+            <pre id="prompt-17"><code>Add a new column called “Requesting User” to the Device Request Table. This column should look up to the User table so that a user can be selected as the person requesting the device.</code></pre>
+          </div>
+
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> When you create a 1-to-many relationship, a lookup column is added to the many-side table.
+          </div>
+        </section>
+
+        <!-- STEP 18 -->
+        <section class="step" id="step-18">
+          <div class="step-head">
+            <div class="step-num">18</div>
+            <div class="step-title">Synchronize app after data model changes</div>
+          </div>
+          <p>After updating the data model, click the <strong>App</strong> icon to synchronize changes.</p>
+        </section>
+
+        <!-- STEP 19 -->
+        <section class="step" id="step-19">
+          <div class="step-head">
+            <div class="step-num">19</div>
+            <div class="step-title">Replace Employee table references with User table</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-19">Copy</button>
+            </div>
+            <pre id="prompt-19"><code>Update the Device Ordering App artifact to replace Employee Table with User Table</code></pre>
+          </div>
+        </section>
+
+        <!-- STEP 20 -->
+        <section class="step" id="step-20">
+          <div class="step-head">
+            <div class="step-num">20</div>
+            <div class="step-title">Add light/dark mode toggle (sun/moon icons)</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-20">Copy</button>
+            </div>
+            <pre id="prompt-20"><code>Add a light/dark mode toggle to the app. Add a toggle button (e.g. a sun/moon icon) in the top navigation bar that lets the user switch between light and dark mode.</code></pre>
+          </div>
+
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> If you want to revert changes, prompt the agent to undo the last action.
+          </div>
+        </section>
+
+        <!-- STEP 21 -->
+        <section class="step" id="step-21">
+          <div class="step-head">
+            <div class="step-num">21</div>
+            <div class="step-title">Save the application</div>
+          </div>
+          <p>Select <strong>Save</strong>.</p>
+        </section>
+
+        <!-- STEP 22 -->
+        <section class="step" id="step-22">
+          <div class="step-head">
+            <div class="step-num">22</div>
+            <div class="step-title">Publish the application</div>
+          </div>
+          <p>Select <strong>Publish</strong>.</p>
+          <div class="callout callout-info">
+            <strong>Note:</strong> Draft tables will be published to Dataverse during publish.
+          </div>
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> The first publish takes longest because tables are created in Dataverse schema. Subsequent publishes are faster.
+          </div>
+        </section>
+
+        <!-- STEP 23 -->
+        <section class="step" id="step-23">
+          <div class="step-head">
+            <div class="step-num">23</div>
+            <div class="step-title">Add a dashboard and set it as default landing page</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-23">Copy</button>
+            </div>
+            <pre id="prompt-23"><code>Add a dashboard page as the default landing page before the device catalog. Include summary cards for total devices, total requests, pending requests, and most requested device. Add a bar chart for requests by category and a line chart for requests over time.</code></pre>
+          </div>
+
+          <div class="callout callout-info">
+            <strong>Iteration note:</strong> If charts aren’t vibrant enough, continue refining via prompts (see next step).
+          </div>
+        </section>
+
+        <!-- STEP 24 -->
+        <section class="step" id="step-24">
+          <div class="step-head">
+            <div class="step-num">24</div>
+            <div class="step-title">Make bar chart more vibrant (and dark-mode friendly)</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-24">Copy</button>
+            </div>
+            <pre id="prompt-24"><code>Make the Requests by Category chart more colorful. Make sure it is legible in dark mode as well.</code></pre>
+          </div>
+        </section>
+
+        <!-- STEP 25 -->
+        <section class="step" id="step-25">
+          <div class="step-head">
+            <div class="step-num">25</div>
+            <div class="step-title">Use Picker tool for quick inline edits</div>
+          </div>
+          <ol>
+            <li>Select the <strong>Picker</strong> tool icon to enable inline edits</li>
+            <li>Hover elements — select to see edit options</li>
+            <li>Select Dashboard title — ask agent changes, adjust typography/colors, or directly type text</li>
+          </ol>
+        </section>
+
+        <!-- STEP 26 -->
+        <section class="step" id="step-26">
+          <div class="step-head">
+            <div class="step-num">26</div>
+            <div class="step-title">Add “New Request” button with dialog form</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-26">Copy</button>
+            </div>
+            <pre id="prompt-26"><code>Add a "New Request" button on the My Requests page, placed in the top right area. When clicked, it should open a dialog with a form that lets the user request a device.</code></pre>
+          </div>
+        </section>
+
+        <!-- STEP 27 -->
+        <section class="step" id="step-27">
+          <div class="step-head">
+            <div class="step-num">27</div>
+            <div class="step-title">Approve/Reject requests and update inventory on approval</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-27">Copy</button>
+            </div>
+            <pre id="prompt-27"><code>Let user approve or reject a pending device request. When clicking on a pending request tile, open a modal dialog which will allow user to review the request. Provide an Approve or Reject button on the bottom of the dialog. If a device request is approved, it should update the available quantity of that device in the device catalog.
+Validate that approving the request results in an update to the available quantity of the device as well.</code></pre>
+          </div>
+        </section>
+
+        <!-- STEP 28 -->
+        <section class="step" id="step-28">
+          <div class="step-head">
+            <div class="step-num">28</div>
+            <div class="step-title">Add Low Stock Alert list/grid to dashboard</div>
+          </div>
+
+          <div class="prompt-block">
+            <div class="prompt-head">
+              <strong>PROMPT</strong>
+              <button class="copy-btn" data-copy="#prompt-28">Copy</button>
+            </div>
+            <pre id="prompt-28"><code>Add a Low Stock list view on the Dashboard screen, where any device with fewer than 3 items on hand are listed. It should sort items by available quantity, with lowest at the top.</code></pre>
+          </div>
+        </section>
+
+        <!-- STEP 29 -->
+        <section class="step" id="step-29">
+          <div class="step-head">
+            <div class="step-num">29</div>
+            <div class="step-title">Publish again</div>
+          </div>
+          <p>Publish your solution again after these updates.</p>
+        </section>
+
+        <!-- STEP 30 -->
+        <section class="step" id="step-30">
+          <div class="step-head">
+            <div class="step-num">30</div>
+            <div class="step-title">Share the app with end users + assign security roles</div>
+          </div>
+          <ol>
+            <li>Select the <strong>Share</strong> icon</li>
+            <li>Select users or security groups</li>
+            <li>Assign appropriate security roles</li>
+          </ol>
+          <div class="callout callout-tip">
+            <strong>Tip:</strong> You can create custom security roles directly within your solution.
+            See: <a href="https://learn.microsoft.com/en-us/power-platform/admin/database-security">Role-based security roles for Dataverse</a>
+          </div>
+        </section>
+
+        <!-- STEP 31 -->
+        <section class="step" id="step-31">
+          <div class="step-head">
+            <div class="step-num">31</div>
+            <div class="step-title">Verify everything is solution-aware (ALM ready)</div>
+          </div>
+          <p>
+            Go back to <a href="https://make.powerapps.com">make.powerapps.com</a> and open your custom solution.
+            Confirm Vibe components (plan, plan artifacts, etc.) exist in solution context and are ready for ALM (pipelines, source control, downstream environments).
+          </p>
+
+          <div class="checkpoint">
+            ✅ <strong>Congratulations!</strong> You’ve successfully completed the Vibe Power Apps Lab.
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" data-include="footer"></footer>
+</body>
+</html>
