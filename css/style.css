@@ -142,3 +142,22 @@ a:hover{text-decoration:underline}
 .copy-btn:hover{background:#f8fafc}
 pre{margin:0;padding:12px;background:#0b1220;color:#e2e8f0;overflow:auto}
 code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+
+/* --- Text wrapping fixes for long strings (URLs, pasted PDF text, etc.) --- */
+.content, .lab-header, .callout, .card, .hero {
+  overflow-wrap: anywhere;   /* best modern behavior */
+  word-break: break-word;    /* fallback */
+  hyphens: auto;             /* nicer wrapping where supported */
+}
+
+/* Make sure links and headings don't blow out layout */
+.content a, .lab-header a, .content p, .lab-header p,
+.content li, .lab-header li, .content h1, .content h2, .content h3 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* IMPORTANT: keep prompts/code blocks readable (scroll instead of wrap) */
+pre, code {
+  hyphens: none;
+}
