@@ -1,218 +1,458 @@
-# 🎯 Side Quest: Vibe Apps
 
 
-## ✅ Task 1 : Open Vibe Apps and select your environment
 
-1. Open a **new browser tab** (keep your existing tabs open — you'll come back to them).
+Vibe Coding Lab 
+Vibe Apps in Power Platform
+UN Agency Edition
 
-1. Navigate to [vibe.powerapps.com](https://vibe.powerapps.com).
+Building AI-Powered Apps for Humanitarian Operations
+WFP  |  IFAD  |  FAO
 
-1. If prompted to sign in, use the same account you've been using throughout the workshop.
+Workshop Duration: 60–75 minutes
+Difficulty: Beginner – No coding experience required
+ 
+Overview
+Welcome to Vibe Coding Lab – Introductory to Vibe Apps in Power Platform! In this hands-on lab, you will use vibe coding the practice of building applications by describing what you need in plain, natural language to create a fully functional Power App tailored to United Nations operations.
+Rather than writing traditional code, you will prompt Microsoft Power Apps to generate your app’s data model, screens, and logic using conversational descriptions. This approach enables anyone, regardless of technical background, to rapidly build professional applications that solve real operational challenges.
+This lab manual demonstrates how Vibe Power Apps enables you to build apps for your team using natural language guidance, AI-assisted UI generation, and automated logic creation, backed by robust data storage on Dataverse, fully supported with built-in security, RBAC, and scale.
+What is Vibe Coding?
+Vibe coding is a new approach to software development where you describe what you want to build in everyday language, and AI generates the application for you. In Power Platform, this means you can type a description like “build me an app that tracks food distribution across field offices” and Power Apps will create the data tables, screens, forms, and navigation automatically.
+You then refine your app through iterative prompts — asking AI to add features, modify layouts, or adjust logic — all without writing a single line of code.
+Core concepts 
+Vibe apps bring together: 
+•	Agents for generating UI, logic, and data, resulting in a full-stack React app 
+•	Dataverse as the primary data store 
+•	Managed Platform for scaled deployment and robust governance 
+Concept Why it matters Agent generated UI Agents accelerate app delivery by generating pages, forms, and logic from natural language descriptions. It reduces development effort. Business logic via NL App agent can create patterns, validation, and conditional formatting by interpreting user intent, enabling rapid automation without writing formulas manually. ALM Every app built using Vibe lives in a Dataverse Solution by default. Move ahead with confidence and deploy your Vibe solution to downstream environments. 
+Lab Scenario
+You are a program officer at a UN agency. Your team receives hundreds of inquiries each week from partner organizations, NGOs, government ministries, and the general public. These inquiries cover a wide range of topics:
+•	Food distribution schedules and eligibility criteria
+•	Project funding status and grant application processes
+•	Technical assistance requests for agricultural resilience
+•	Emergency referrals related to drought, flood, or conflict response
+•	Partnership and coordination questions
+Today, these inquiries arrive through scattered emails, phone calls, and walk-ins with no central tracking. Requests fall through the cracks, response times are inconsistent, and there is no visibility into inquiry volumes or trends.
+Your mission: Build a Program Inquiry & Referral Hub that centralizes intake, categorizes inquiries, assigns them to the right team, and tracks resolution from start to finish.
+What You’ll Build
+•	A app with multiple screens for intake, tracking, and reporting
+•	A data model with tables for Inquiries, Categories, Staff, and Partner Organizations
+•	Status tracking and team assignment workflows
+•	A dashboard view for monitoring inquiry volumes and overdue items
+•	Search, filter, and referral capabilities
+Learning Objectives
+By the end of this lab, you will be able to:
+•	Use natural language prompts to create a Power App from scratch
+•	Understand how AI generates data models, table relationships, and app screens
+•	Iterate and refine your app using conversational prompts
+•	Apply vibe coding techniques to humanitarian and development use cases
+•	Customize app themes, layouts, and workflows through plain-language instructions
+Prerequisites
+Before you begin, ensure you have the following:
+•	A Power Apps Premium license (included with your workshop credentials)
+•	Access to a Power Platform environment (your facilitator will confirm the environment name)
+•	A modern web browser (Microsoft Edge or Google Chrome recommended)
+•	Overview of the new Power Apps vibe experience - Power Apps
 
-1. You should see the Vibe Apps home page with the heading **Let's build your ideas together**, a prompt text box, and suggestion cards at the bottom.
+NOTE
+If you encounter any issues signing in or accessing your environment, raise your hand and a facilitator will assist you. Do not spend more than 2 minutes troubleshooting on your own.Lab Steps
+1.	Create a new solution in Power Apps named “UN Vibe Coding Session”. 
 
-1. Take a moment to explore the left navigation panel. You should see three items:
-   - **Home** — the landing page you are on now
-   - **Plans** — a list of your previous plans
-   - **Apps** — a list of your published apps
 
-1. In the **bottom left** of the page, select your profile icon to open the profile panel. You should see your name, email, and the currently selected **Environment**.
 
-1. Select the environment picker and choose **Dev 2** — a separate environment from the one you've been using in Labs 2–4. This keeps the Vibe-generated tables separate from the pre-built solution tables and avoids any naming conflicts.
 
 
----
 
-## ✅ Task 2 : Create an event schedule management app
 
-In this task you'll enter a prompt to generate a complete event management application — the same domain as the Schedule Builder you built (or are building) in Lab 3, but as a full standalone app.
 
-### 👉 Attach an image for design inspiration (optional)
 
-1. If you've already deployed the Schedule Builder page from Lab 3 and have a screenshot of it, you can attach it for design inspiration. Select the **Add images** button (the **+** icon to the left of the prompt text box) and choose your screenshot.
 
-> [!TIP]
-> Don't have a screenshot? Skip this step — the prompt alone is enough. Attaching an image just gives Vibe Apps extra visual context about the layout and style you want.
 
-### 👉 Enter the event management prompt
 
-1. Select the prompt text box and enter the following:
 
-   ```text
-   Build a full event schedule management app. Include these pages:
 
-   1. Dashboard — summary metrics (total events, total sessions, scheduled vs unscheduled sessions, rooms available) with charts for sessions by track/category and scheduling progress.
-   2. Events — a list of all events with columns for name, start date, end date, venue, and status. Allow creating and editing events.
-   3. Sessions — a table of all sessions showing title, track/category, speaker, duration, and scheduling status. Include filtering by event and track.
-   4. Schedule Builder — a visual grid with rooms as columns and time slots as rows. Show scheduled sessions in the grid, color-coded by track. Include an unscheduled sessions sidebar.
-   5. Rooms — a page listing all rooms with capacity, location, and equipment details.
 
-   Use a professional conference management style with clean, modern UI.
-   ```
 
-1. Select the **Submit** button (the arrow icon) to send the prompt.
+2.	Create a new publisher named “Contoso” and click Save 
 
-### 👉 Wait for generation to complete
 
-1. The view will change to the app workspace. You should see a left panel with a chat area and a right panel with **Plan**, **Data**, and **App** tabs.
 
-1. Observe the status message — it should show **Generating a plan for building**.
 
-1. After a few moments, a task list will appear in the chat panel showing the build progress. You will see tasks such as:
-   - Set up data models and mock data
-   - Create Dashboard page
-   - Build Events page
-   - Build Sessions page
-   - Build Schedule Builder page
-   - Create Rooms page and configure routing
 
-1. Wait for all tasks to complete. This typically takes **5–10 minutes** — a perfect time to switch back to your other lab and check on agent progress.
 
-> [!TIP]
-> This is exactly the workflow the timetable suggests: kick off a Vibe Apps generation, switch back to your Copilot lab work, and check back when it's done.
 
-1. When generation is complete, you will see a summary from Copilot describing each page that was created. The app preview will show the **Dashboard** page with metric cards and charts.
 
----
 
-## ✅ Task 3 : Explore the plan and data model
 
-### 👉 Review the plan
 
-1. Select the **Plan** tab in the right panel.
 
-1. Review the plan contents. You should see a **User Roles** section listing personas such as **Event Organizer** and **Session Coordinator**, each with user stories describing their needs.
 
-> [!NOTE]
-> The plan is generated from your prompt and describes the application from a user perspective. Compare this with Lab 3 — there you described business requirements directly to Copilot. Here, Vibe Apps creates the user stories for you.
 
-### 👉 Review the data model
 
-1. Select the **Data** tab in the right panel.
+3.	Set as preferred solution and Create as shown in image below 
 
-1. Review the entity relationship diagram (ERD). You should see tables such as **Event**, **Session**, **Room**, and **Schedule Slot** with their columns and relationships displayed visually.
 
-1. Compare this data model with the one you used in Lab 3. Notice:
-   - Vibe Apps generated its **own** data model from your prompt
-   - The column names and structure may differ from the pre-built solution in the Gen Pages lab
-   - This is a **draft** — tables are not created in Dataverse until you publish
 
----
 
-## ✅ Task 4 : Explore the app and editing modes
 
-### 👉 Preview the app
 
-1. Select the **App** tab in the right panel to return to the app preview.
 
-1. Select the **hamburger menu** (☰) at the top left of the app.
 
-1. You should see the navigation menu with links to all five pages:
-   - **Dashboard**
-   - **Events**
-   - **Sessions**
-   - **Schedule Builder**
-   - **Rooms**
 
-1. Select each page in the navigation to preview them. Pay special attention to the **Schedule Builder** page — compare the grid layout with what you built (or are building) in Lab 3.
 
-### 👉 Switch to Code view
 
-1. Above the app preview, locate the view mode buttons: **Preview**, **Code**, and **Split**.
 
-1. Select **Code**.
 
-1. The right panel now shows a file explorer and code editor. You should see the project structure under `src/`:
-   - `components/` — reusable React components
-   - `generated/` — auto-generated data types
-   - `hooks/` — React hooks for data access
-   - `lib/` — utility functions
-   - `pages/` — one file per application page
 
-1. Select `power.config.json` to view the app configuration. Note this is the same technology as Lab 3 — a **Vite/React/TypeScript** project using **Fluent UI**.
 
-> [!NOTE]
-> Both Lab 3 (Gen Pages) and Vibe Apps generate React/TypeScript applications. The difference is in how you direct the process: Lab 3 gives you full control via GitHub Copilot in VS Code. Vibe Apps manages the entire workflow for you from a single conversation.
 
-### 👉 Try inline edits
 
-1. Select **Preview** to return to the preview-only view.
 
-1. Select the **Inline edits** toggle in the toolbar above the preview.
 
-1. You should see a **Select an element** overlay appear on the app preview, and a bottom toolbar with an **Ask for changes...** text box and **Typography** and **Color** buttons.
+NOTE
+When you set a preferred solution, all components generated by Vibe—including plans, code apps, and data assets—are created inside that solution. Any new components created later will also be added automatically in the same solution.
 
-1. Try selecting a heading or card element in the preview. Notice how the element becomes highlighted and the toolbar options update.
 
-> [!TIP]
-> Inline edits let you make targeted changes to individual UI elements — adjusting fonts, colors, or requesting specific changes — without affecting the rest of the app. This is something you can't do as easily in the external tooling approach.
 
-1. Select the **Inline edits** toggle again to exit inline edit mode.
 
----
 
-## ✅ Task 5 : Iterate using chat
+TIP
+If you are already signed in with a different account, click your profile icon in the top-right corner, select “Sign out,” and then sign back in with the workshop credentials.
 
-Try a quick iteration to see how fast Vibe Apps applies changes.
+TIP: Vibe is NOT supported for the Default environment.
 
-1. In the chat panel on the left, enter the following prompt:
+Exercise 1: Create Your App with a Natural Language Prompt
+In this exercise, you will navigate to Vibe Power Apps, describe the app you want to build, review the AI-generated data model, and generate your first working application — all using natural language.
+Step 1: Navigate to Power Apps
+Open your web browser and go to:
+https://vibe.powerapps.com
+Confirm the environment name in the bottom-left corner matches the environment where the solution was created. 
 
-   ```text
-   Add a color legend below the Schedule Builder grid showing which color maps to which track/category. Also add a "X of Y sessions scheduled" progress indicator at the top of the schedule builder page.
-   ```
 
-1. Select **Send**.
 
-1. Observe that the changes are applied **almost instantly** — Vibe Apps only regenerates the affected page, not the entire application.
 
-> [!NOTE]
-> Compare this iteration speed with Lab 3. In the Gen Pages approach, each iteration requires code generation → PAC CLI deploy → browser refresh. In Vibe Apps, changes apply in the preview immediately. The trade-off: Vibe Apps is faster to iterate, but you have less control over the generated code and deployment.
 
----
 
-## ✅ Task 6 : Publish (optional)
 
-If you want to see the app running against real Dataverse tables:
 
-1. Select the **Save** button in the top toolbar.
 
-1. Select the **Publish** button in the top toolbar.
 
-1. A **Publish your draft tables and app** dialog will appear. Select **Publish**.
 
-1. Wait for publishing to complete (typically **1–2 minutes**). Vibe Apps creates the Dataverse tables and deploys the application.
 
-1. When publishing is complete, select the **Play** button (▶) to open the published app in a new browser tab.
 
-> [!NOTE]
-> Since you selected Dev 2 — a separate environment from Labs 2–4 — the Vibe-generated tables won't conflict with the pre-built Event Schedule Designer tables.
+Step 3: Select Your Environment (If Not Previously Selected)
+In the bottom corner of the Power Apps home screen, check the Environment selector. If it does not already show your workshop environment, click the selector and choose the correct one.
+Your facilitator will confirm the environment name (it typically follows a pattern like “UN Workshop – [Your Name]” or “UN Vibe Lab”).
+ 
+TIP
+The environment determines where your app and data are stored. Always verify you are in the correct environment before building.Step 4: Review the Vibe home experience & Start Building with AI
+Review the Vibe home experience, including suggested prompts and navigation options (Home, Plans, Apps). 
+On the Power Apps home screen, you will see a text input area with a prompt such as “Describe the app you want to create” or “Start with a prompt.”
+This is where the magic of vibe coding begins. You will describe your app in plain language, and Power Apps will generate the entire application structure for you
+ 
+1: Home page: This is where you start vibing 
+2: Plans: This is where your past plans that you created through vibe live 
+3: Apps: You will find a list of all your vibe created apps here 
+4: Profile and Environment Picker: Review your logged in profile and current environment 
+5: Prompt box: This is where you will enter your prompt to start creating 
+6: Submit button: This kicks off the creation of your Vibe app 
+7: Sample Prompts gallery: Try out sample prompts to check out Vibe
+Step 5: Enter Your App Prompt
+Type the following prompt into the text box. You may customize it to reflect your specific agency or role, but the structure below will give Power Apps enough detail to generate a robust starting point:
 
----
+PROMPT
+Create a centralized inquiry management solution for a United Nations agency that enables staff to capture, triage, and manage inquiries received from partners, NGOs, government ministries, and the public. The solution should allow users to log and categorize inquiries, assign them to responsible staff members, and track their status through resolution. It should maintain structured records for inquiries, partner organizations, staff contacts, and inquiry categories, while providing staff with clear visibility into workload, inquiry priorities, and resolution progress. A dashboard should summarize inquiry status, priority, and volume to support operational oversight and timely response. 
 
-## ✅ Task 7 : Compare with the Gen Pages approach
 
-This is the whole point of the side quest. Take a moment to compare what Vibe Apps produced with what you built (or are building) in Lab 3.
+TIP Keep prompts high-level. Vibe is designed for iterative refinement.Step 6: Review the Generated Data Model
 
-| Aspect | Generative Pages (Lab 3) | Vibe Apps (this side quest) |
-|---|---|---|
-| **Starting point** | Existing model-driven app with pre-built data model and sample data | Nothing — Vibe Apps creates everything from the prompt |
-| **What it generates** | A single custom page inside a model-driven app | A complete standalone multi-page React application |
-| **Data model** | You use the existing tables — the skill reads actual column names from Dataverse | Vibe Apps generates its own draft data model and publishes it |
-| **Control over code** | Full — you edit files in VS Code, review diffs, choose what to keep | Limited — you can view and edit code in the browser, but the workflow is managed |
-| **Iteration speed** | Code → deploy → refresh (1–2 min per iteration) | Near-instant preview updates |
-| **Deployment** | PAC CLI to your chosen environment | One-click publish to a Vibe-managed environment |
-| **Best for** | Adding AI-generated pages to an existing model-driven app with precise control | Building a complete new application from scratch as fast as possible |
-| **Agent involvement** | GitHub Copilot follows your instructions, asks questions, you approve each step | Fully managed — you describe, Vibe Apps decides and builds |
+Observe the agents on the left-side chat panel as they gather requirements, design the data model, generate a plan, and build the application. 
 
-> [!NOTE]
-> Neither approach is "better" — they're different tools for different situations. Vibe Apps is the fastest path from idea to working app. Gen Pages with GitHub Copilot give you full control over every line of code and integrate into an existing model-driven app. Knowing when to use which is a key architectural decision.
 
----
 
-## 🥳 Side Quest Complete!
 
-You've now experienced both sides of the AI-assisted app building spectrum:
-- **Vibe Apps** — describe once, get a full app, iterate through chat
-- **GitHub Copilot + Gen Pages** — full control, step-by-step iteration, integrated into your existing app
 
-Head back to your main lab work. If you finished early, try iterating further on the Vibe App — add more pages, change the styling, or explore the code to see how it compares to the Gen Pages code you reviewed in Lab 3.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The splash widget will showcase the capabilities of the Vibe designer interface while the agents build the plan, data model and React App. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TIP Make in context edits as you continue to build, while everything else stays steady. 
+•	Small changes add up, and each pass helps move the app closer to what you want. 
+•	Turn on Code view to see how your app is being built without impacting the process. 
+•	Add existing tables from the Data tab and continue shaping how your app works with information. 
+.
+
+Step 8: Review the generated UN Inquiry Portal App (Below is a screenshot of one variation of App pages generated by Vibe agents) 
+
+
+ 
+
+
+Step 9: Open the Plan view and review the problem statement, personas, data model, and supporting agents. 
+
+
+ 
+NOTE
+You can edit User roles, data model to further iterate and align with your business requirements.
+
+TIP User roles are conceptual only. Dataverse security roles control access (RBAC) and can be set up after solution is built out..
+After submitting your prompt, Power Apps will analyze your description and propose a data model. You will see a list of suggested tables and their columns.
+Review the proposed tables carefully. You should see something similar to:
+
+TableExpected ColumnsInquiriesSubject, Description, Inquiry Type, Priority (High/Medium/Low), Status (Open/In Progress/Resolved), Date Received, Resolution Notes, Assigned To, Partner OrganizationCategoriesCategory Name, DescriptionStaff MembersFull Name, Role, Team, Email, Phone NumberPartner OrganizationsOrganization Name, Type (NGO/Government/UN Agency/Private Sector), Country, Contact Person, Contact Email
+TIP
+The AI may generate slightly different table or column names than what you specified. That’s okay! You can rename or modify them in the next step. Focus on whether the overall structure captures your intent.Step 7: Open & Modify Your Data Model
+ 
+Before generating the app, you have the opportunity to adjust the proposed data model:
+•	Add any missing columns (e.g., “Urgency Level,” “Field Office,” or “Region”)
+•	Remove columns that are not needed for your scenario
+•	Rename columns to match your agency’s terminology
+•	Verify that relationships between tables look correct (e.g., Inquiries linked to Categories and Staff Members)
+
+TIP
+If you want to add a column that connects to another table (like a lookup), describe it clearly: “Add a ‘Referring Organization’ column to Inquiries that links to the Partner Organizations table.”Note: The Data Model generated, including tables, schemas and relationships can vary as this is AI generated. These can be updated with the data agent or manually to align with your business needs.
+ 
+
+Step 8: Review & Add Additional Sample Data 
+Select the Inquiry table. Go to Ellipsis and Select View Data. You should see around 5 rows of sample data, including table columns. 
+
+
+
+Now prompt the agent to add approximately 15 additional rows of sample data. 
+
+PROMPT
+Add an additional 15 rows of sample data to the inquiry table. 
+
+
+
+
+
+
+
+
+TIP Sample data is critical for validating UX and business logic during development.
+Step 9: Add & Remove Tables in Dataverse
+Next, we will learn how to bring in data from our existing Dataverse tables. 
+If you select the ellipses on any designated table you can remove that table (for workshop purposes please do not remove any tables)  
+ 
+
+Conversely, you can add an existing table by selecting the ‘Add Table’ icon  
+ 
+Step 8: Generate the App
+Once you are satisfied with the data model, click the “Publish” or “Generate” button. Power Apps will now build your application, including:
+•	A browse/list screen showing all inquiries
+•	A detail screen for viewing individual inquiry records
+•	An edit/new form for creating and updating inquiries
+•	Navigation between screens
+This process typically takes 30–60 seconds.
+
+ 
+TIP The first Publish always takes longest as the tables are being created on the Dataverse Schema. Subsequent Publish operations should be much faster.
+Step 9: Explore Your Generated App
+Once the app is generated, take a few minutes to explore what Power Apps created for you:
+1.	Browse the screen list in the left panel — you should see multiple screens
+2.	Click through each screen to understand the layout
+3.	Look at the data fields on forms — do they match your expectations?
+4.	Check the navigation — can you move between screens easily?
+
+NOTE
+The generated app is a starting point. It may not be perfect, and that’s expected! The power of vibe coding is in the iteration — you will refine and enhance the app in the next exercise.Step 10: Test Your App
+Click the Preview button (the play icon in the top-right toolbar) to test your app in action:
+1.	Try creating a new inquiry record — enter a subject like “Question about food distribution schedule in Juba”
+2.	Set the priority to “High” and the category to “Food Distribution”
+3.	Save the record and verify it appears in the inquiry list
+4.	Open the record and confirm all fields display correctly
+5.	Press Escape or click the X to exit preview mode
+
+TIP
+Testing early and often is a key vibe coding practice. Every time you make a change, preview the app to confirm it works as expected before moving on.Exercise 2: Refine & Extend Your App
+Now that you have a working foundation, it’s time to enhance your app with additional features using iterative vibe coding prompts. Each step below introduces a new prompt that adds functionality to your app.
+You can enter these prompts in the Copilot chat panel within the Power Apps Studio (look for the chat icon on the right side of the screen).
+Step 10: Add Light & Dark Mode
+Add a light and dark mode toggle using sun and moon icons in the top navigation bar. 
+
+PROMPT
+Add a light/dark mode toggle to the app. Add a toggle button (e.g. a sun/moon icon) in the top navigation bar that lets the user switch between light and dark mode. 
+
+Code agent adds a dark mode button with sun and moon icons: 
+
+ 
+
+ 
+TIP At any moment, if you want to revert any changes, you can prompt the agent to undo last action.
+
+Step 11: Add Referral Tracking Fields
+Let’s enrich the inquiry form with fields that support the referral workflow:
+
+PROMPT
+Add a ‘Referring Organization’ dropdown to the Inquiry form that pulls from the Partner Organizations table. Also add a ‘Response Deadline’ date field and a ‘Follow-up Required’ yes/no toggle.
+Preview the app and verify the new fields appear on the inquiry form.
+Step 12: Create a Dashboard Screen
+A dashboard gives your team at-a-glance visibility into inquiry volumes and trends:
+
+PROMPT
+Add a new dashboard screen that shows: the total number of open inquiries, the number of inquiries by category displayed as a bar chart, a list of overdue items where the response deadline has passed, and the number of high-priority inquiries currently unassigned.
+TIP
+Dashboards are one of the highest-value features you can add. They turn raw data into actionable insights for managers and team leads.Step 13: Expand the Status Workflow
+Real-world inquiry management needs more granular status tracking:
+
+PROMPT
+Update the Inquiry status field to include these options: New, Under Review, Assigned, In Progress, Pending Partner Response, Resolved, and Closed. Add a ‘Status History’ section on the detail screen that logs when the status changes and who changed it.
+After this change, test updating an inquiry’s status and verify the history is captured.
+Step 14: Apply UN Branding
+Make the app feel professional and aligned with your agency’s identity:
+
+PROMPT
+Update the app’s color theme to use UN Blue (#009EDB) as the primary color and white text for headers. Add the title ‘UN Inquiry Hub’ as a header banner on all screens. Make the navigation bar consistent and visible on every screen.
+TIP
+Consistent branding builds trust with users. Even for internal tools, a polished look increases adoption and signals that the tool is officially supported.Step 15: Add Search and Filtering
+As inquiry volume grows, users need ways to quickly find specific records:
+
+PROMPT
+Add a search bar to the inquiry list screen that searches across subject, description, and partner organization name. Add filter buttons for Status (Open, In Progress, Resolved) and Priority (High, Medium, Low). Allow users to combine search text with status and priority filters.Step 16: Highlight Urgent Items
+Ensure critical inquiries never fall through the cracks:
+
+PROMPT
+On the dashboard screen, add an ‘Urgent Attention’ section that highlights inquiries with High priority that have been in ‘New’ status for more than 24 hours. Display these in red-bordered cards with the subject, partner organization, and time since received.Step 17: Build a Team Referral Workflow
+Enable staff to refer inquiries to specialized teams with one click:
+
+PROMPT
+Add a ‘Refer to Team’ button on the inquiry detail screen. When clicked, it should display a dropdown of available teams: Food Distribution, Livelihoods & Resilience, Nutrition, Logistics & Supply Chain, External Relations, and Emergency Response. When a team is selected, update the inquiry’s assigned team and change the status to ‘Assigned.’
+TIP
+Think of this as a lightweight case management workflow. In a production app, you could extend this to send email notifications or Teams messages when an inquiry is referred.Step 18: Add Realistic Sample Data
+Populate your app with realistic records to see how it handles real-world scenarios:
+
+PROMPT
+Add 10 sample inquiry records with realistic UN scenarios. Include: an inquiry about food distribution schedules in South Sudan, a question about rural development project funding in Kenya, a technical assistance request for climate-resilient agriculture in Somalia, an emergency referral for drought response in Ethiopia, a partnership inquiry from an international NGO about joint programming in Yemen, a request for school feeding program information in Mozambique, a question about smallholder farmer loan applications in Rwanda, a follow-up on livestock vaccination campaigns in Niger, a coordination request from a government ministry in Bangladesh about flood preparedness, and a general information request about WFP operations in the Sahel region.
+After the data is added, browse through the inquiry list and dashboard to see your app in action with realistic content.
+Step 19: Final Review and Save
+Congratulations — you have built a complete Program Inquiry & Referral Hub using vibe coding! Take a few minutes to do a final review:
+1.	Preview the app and walk through the full workflow: create an inquiry, assign it, refer it to a team, and resolve it
+2.	Check the dashboard — do the counts and charts reflect your test data?
+3.	Verify search and filters work correctly
+4.	Review the overall look and feel — is the branding consistent?
+5.	Save your app (File > Save) and optionally Publish it to make it available to others
+
+TIP
+If you finish early, try adding additional features using your own prompts! Some ideas: add an “Export to Excel” button, create a “My Assigned Inquiries” view, or add a comments/notes log to each inquiry.  Build Inspiration: Additional UN Use Cases
+Finished the main lab early, or want to explore other scenarios? Below are ready-to-use prompts for each agency. Pick one that resonates with your work and build it from scratch using the same vibe coding approach you just learned!
+World Food Programme (WFP)
+
+WFP
+Food Distribution Tracker
+Track and monitor food distribution activities across field offices. Record distribution events, beneficiary counts, commodity types, and tonnage delivered. Flag shortfalls and provide real-time visibility to country office leadership.
+Sample Prompt:
+"Build a canvas app called ‘WFP Distribution Tracker’ to record and monitor food distribution activities. Include tables for: Distribution Events (date, location, field office, distribution type, planned vs. actual beneficiaries, planned vs. actual tonnage, status, notes), Commodities (name, unit, category such as cereals/pulses/oil/specialized nutritious foods), Field Offices (name, country, region, office head), and Beneficiary Groups (group name, demographic, registration count). Add a dashboard showing total distributions this month, tonnage delivered vs. planned as a progress bar, and a list of upcoming distributions for the next 7 days."
+WFP
+Beneficiary Feedback & Complaints Mechanism
+A community feedback system that lets field staff record beneficiary feedback, complaints, and suggestions. Categorize by type, route to the appropriate team, and track resolution to close the feedback loop.
+Sample Prompt:
+"Build a canvas app called ‘WFP Feedback Hub’ for recording and managing beneficiary feedback and complaints. Include tables for: Feedback Records (date received, channel such as hotline/field visit/suggestion box/community meeting, category such as food quality/distribution timing/staff conduct/registration/other, severity, description, location, status, assigned to, resolution notes, date resolved), Feedback Categories (name, SLA response time in days, escalation team), Locations (site name, district, country, GPS coordinates), and Staff (name, role, office). Add a dashboard showing feedback received this week by category, average resolution time, and open items past SLA."
+WFP
+Emergency Response Coordination Board
+A rapid-deployment coordination tool for emergency operations. Track situation reports, resource requests, personnel deployments, and inter-agency coordination activities during a crisis response.
+Sample Prompt:
+"Build a canvas app called ‘WFP Emergency Board’ for coordinating emergency response operations. Include tables for: Situation Reports (date, crisis name, location, situation summary, needs identified, response actions taken, author), Resource Requests (item, quantity, urgency, requesting office, status, fulfillment date), Personnel Deployments (staff name, role, deployed from, deployed to, start date, end date, status), and Coordination Activities (date, activity type such as cluster meeting/assessment/convoy, participants, outcomes, next steps). Add a dashboard showing active emergencies, pending resource requests by urgency, and deployed personnel count by location."
+International Fund for Agricultural Development (IFAD)
+
+IFAD
+Rural Development Grant Tracker
+Manage the lifecycle of rural development grants from application through disbursement and monitoring. Track project milestones, financial disbursements, and implementation progress across country programs.
+Sample Prompt:
+"Build a canvas app called ‘IFAD Grant Tracker’ for managing rural development grants. Include tables for: Projects (project name, country, region, sector such as agriculture/livestock/fisheries/rural finance, total approved amount, disbursed amount, start date, end date, status, project manager), Milestones (project link, milestone name, target date, actual completion date, status, evidence/notes), Disbursements (project link, tranche number, amount, date requested, date approved, date disbursed, conditions met yes/no), and Country Programs (country, regional division, portfolio manager, number of active projects, total portfolio value). Add a dashboard showing portfolio overview by region, disbursement rate vs. target, projects at risk with milestones overdue, and upcoming disbursement deadlines."
+IFAD
+Smallholder Farmer Loan Application Portal
+A digital intake system for smallholder farmer loan applications. Capture applicant information, farm details, requested loan amount, and intended use. Enable loan officers to review, score, and approve applications.
+Sample Prompt:
+"Build a canvas app called ‘IFAD Farmer Finance’ for processing smallholder farmer loan applications. Include tables for: Loan Applications (applicant name, gender, age, village, district, country, farm size in hectares, primary crops, livestock count, requested amount, intended use such as seeds/equipment/irrigation/storage, application date, status, assigned reviewer, reviewer notes, approval date), Applicant Profiles (name, national ID, household size, income bracket, existing loans yes/no, cooperative membership), Loan Products (product name, maximum amount, interest rate, repayment period, eligibility criteria), and Review Decisions (application link, reviewer, score, recommendation, conditions, date). Add screens for application intake, a reviewer queue sorted by date, and a summary view showing applications by status and region."
+IFAD
+Project Monitoring & Evaluation App
+Collect field-level monitoring data for IFAD-funded projects. Record site visit observations, beneficiary interviews, output indicators, and photos. Aggregate results for country and regional reporting.
+Sample Prompt:
+"Build a canvas app called ‘IFAD M&E Tracker’ for project monitoring and evaluation. Include tables for: Site Visits (date, project name, location, visiting officer, visit type such as routine/spot-check/mid-term review, findings summary, follow-up required yes/no), Indicators (indicator name, unit, baseline value, target value, current value, measurement date, project link, data source), Beneficiary Interviews (date, project, location, beneficiary name, gender, age group, key findings, satisfaction rating 1-5), and Follow-up Actions (visit link, action description, responsible person, deadline, status). Add a dashboard showing indicator progress vs. targets as bar charts, visits completed this quarter, and pending follow-up actions."
+Food and Agriculture Organization (FAO)
+
+FAO
+Agricultural Pest & Disease Early Warning System
+A reporting tool for tracking pest and disease outbreaks affecting crops and livestock. Field officers submit sighting reports with location, severity, and affected species. The system aggregates reports for early warning analysis.
+Sample Prompt:
+"Build a canvas app called ‘FAO Pest Watch’ for reporting and tracking agricultural pest and disease outbreaks. Include tables for: Incident Reports (date reported, reporter name, location, country, GPS coordinates, pest or disease name, affected crop or livestock, severity level such as low/moderate/severe/critical, estimated area affected in hectares, estimated livestock affected, photos/observations, status, response actions taken), Pest and Disease Registry (name, type such as insect/fungal/viral/bacterial/locust, affected species, known treatment, alert threshold), Response Actions (incident link, action type such as spraying/quarantine/treatment/monitoring, date, team, resources deployed, outcome), and Regions (country, province, agroecological zone, primary crops, primary livestock). Add a dashboard showing active incidents by severity on a summary view, new reports this week, and species most frequently affected."
+FAO
+Farmer Advisory & Extension Services Hub
+Connect farmers with technical advisors and extension workers. Farmers or field agents submit questions about crop management, soil health, water use, or market access. Advisors provide guidance and track follow-up.
+Sample Prompt:
+"Build a canvas app called ‘FAO Advisory Hub’ for managing farmer advisory and extension services. Include tables for: Advisory Requests (date, farmer name, district, country, topic such as crop management/soil health/water management/pest control/market access/post-harvest, question description, urgency, assigned advisor, status, response notes, date resolved), Advisors (name, specialization, region, phone, email, max active requests), Knowledge Articles (title, topic, content summary, author, date published, target audience), and Farmer Profiles (name, village, farm size, primary crops, advisory history count). Add a browse screen for open requests sorted by urgency, an advisor workload view showing requests per advisor, and a knowledge base search screen."
+FAO
+Fisheries & Livestock Data Collection Tool
+A mobile-friendly data collection app for fisheries and livestock surveys. Field enumerators record catch data, herd sizes, health indicators, and market prices during field visits.
+Sample Prompt:
+"Build a canvas app called ‘FAO Field Data’ for fisheries and livestock data collection. Include tables for: Survey Records (date, enumerator, location, country, survey type such as fisheries catch/livestock census/market price/health assessment, GPS coordinates, notes), Fisheries Data (survey link, species name, catch weight in kg, fishing method, landing site, vessel type), Livestock Data (survey link, species such as cattle/goat/sheep/poultry/camel, herd size, health status, vaccination status, mortality count), and Market Prices (survey link, commodity, unit, price, market name, currency, date). Add a data entry flow that guides enumerators step-by-step through each survey type and a summary screen showing records collected by date and location."Tips & Best Practices for Vibe Coding
+Crafting Effective Prompts
+•	Be specific: “Add a Priority dropdown with options High, Medium, and Low” works better than “add a priority field”
+•	Name your tables and fields: Don’t leave it to the AI to guess — tell it exactly what you want each thing called
+•	Describe relationships: “Link the Inquiry to the Partner Organizations table through a lookup field”
+•	Include sample data in your prompts: It helps the AI understand the context and generate more realistic defaults
+•	One feature per prompt: When refining, make focused requests rather than cramming multiple changes into one prompt
+Iterative Development
+•	Start simple, then layer on complexity — get the basic data model right before adding dashboards and workflows
+•	Test after every change — preview the app and verify the new feature works before moving on
+•	If a prompt doesn’t produce what you expected, rephrase it with more detail rather than starting over
+•	Save your app frequently — you do not want to lose progress
+•	Use the Copilot chat to ask questions about your app: “What tables does my app have?” or “How is the Inquiry form structured?”
+Thinking About Your Users
+•	Who will use this app? Field staff on mobile devices have different needs than office-based managers on desktops
+•	What is the most common task? Make sure it’s the easiest to do — put it on the home screen
+•	How much data will the app handle? Consider search and filtering from the start if you expect hundreds or thousands of records
+•	What decisions does this app support? Design your dashboard to answer the top 3 questions managers ask
+•	Will users work offline? Power Apps offers offline capabilities — consider this for field deployments
+From Lab to Production
+•	This lab gives you a strong prototype. To move toward production, consider: security roles and data access policies, integration with existing systems (SharePoint, Dataverse, Teams), automated workflows using Power Automate (e.g., email notifications on status change), mobile optimization for field staff, and data migration from existing spreadsheets or databases
+•	Share your app with colleagues for feedback before rolling out widely
+•	Work with your IT team to ensure the app meets your agency’s data governance and security requirements
+
+
+End of Lab 
+Thank you for participating! Share what you built with your colleagues and continue exploring vibe coding in Power Platform.
