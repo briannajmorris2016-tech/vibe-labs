@@ -121,4 +121,4 @@ If you encounter access issues, contact a lab facilitator.
 
 # Lab Walkthrough
 
-https://briannajmorris2016-tech.github.io/vibe-labs/#inspiration
+https://briannajmorris2016-tech.github.io/vibe-labs/
