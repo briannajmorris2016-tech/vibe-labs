@@ -121,9 +121,4 @@ If you encounter access issues, contact a lab facilitator.
 
 # Lab Walkthrough
 
-## Step 1 — Create a Solution
-
-In **Power Apps**
-
-1. Create a **New Solution**
-2. Name it:
+https://briannajmorris2016-tech.github.io/vibe-labs/#inspiration
