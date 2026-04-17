@@ -3,282 +3,387 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vibe Apps in Power Platform — UN Agency Edition</title>
+<title>Vibe Apps in Power Platform | UN Agency Edition</title>
 <style>
-  /* ========== THEME — change these colors to rebrand everything ========== */
   :root {
-    --primary: #009EDB;      /* UN Blue */
-    --primary-dark: #0076A8;
-    --accent: #5C2D91;       /* Microsoft purple */
-    --bg: #f7fafc;
-    --surface: #ffffff;
-    --ink: #1a202c;
-    --ink-soft: #4a5568;
-    --border: #e2e8f0;
-    --tip-bg: #fffbeb; --tip-border: #f59e0b;
-    --note-bg: #f5f3ff; --note-border: #7c3aed;
-    --warn-bg: #fef2f2; --warn-border: #ef4444;
+    --un-blue: #009EDB;
+    --un-blue-dark: #0072BC;
+    --ink: #1a1a1a;
+    --muted: #5f6368;
+    --bg: #f7f9fc;
+    --card: #ffffff;
+    --border: #e3e8ef;
+    --green: #10b981;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #8b5cf6;
   }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    margin: 0; font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
-    color: var(--ink); background: var(--bg); line-height: 1.6;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.6;
   }
-
-  /* ========== HERO ========== */
   .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    color: white; padding: 60px 24px; text-align: center;
+    background: linear-gradient(135deg, var(--un-blue) 0%, var(--un-blue-dark) 100%);
+    color: white; padding: 4rem 2rem 3rem; text-align: center;
   }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 10px; }
-  .hero p  { font-size: 1.15rem; opacity: .95; margin: 0 0 20px; }
-  .hero .tagline {
-    display: inline-block; background: rgba(255,255,255,.15);
-    padding: 6px 16px; border-radius: 999px; font-size: 14px;
-    border: 1px solid rgba(255,255,255,.3); margin-bottom: 18px;
+  .hero .eyebrow { font-size: 0.9rem; letter-spacing: 2px; opacity: 0.9; text-transform: uppercase; }
+  .hero h1 { font-size: 2.8rem; margin: 0.5rem 0; font-weight: 700; }
+  .hero .subtitle { font-size: 1.2rem; opacity: 0.95; margin-bottom: 1.5rem; }
+  .badges { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    background: rgba(255,255,255,0.18); padding: 0.4rem 1rem;
+    border-radius: 999px; font-size: 0.9rem; backdrop-filter: blur(8px);
   }
-  .hero .meta {
-    display: inline-flex; gap: 10px; flex-wrap: wrap; justify-content: center;
-  }
-  .hero .chip {
-    background: rgba(255,255,255,.15); padding: 6px 14px;
-    border-radius: 999px; font-size: 14px;
-  }
-  .btn {
-    display: inline-block; background: white; color: var(--primary-dark);
-    padding: 12px 24px; border-radius: 999px; text-decoration: none;
-    font-weight: 600; margin-top: 20px; box-shadow: 0 6px 20px rgba(0,0,0,.15);
-  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
 
-  /* ========== LAYOUT ========== */
-  .wrap { max-width: 960px; margin: 0 auto; padding: 30px 24px; }
-  section { background: var(--surface); border-radius: 12px;
-            padding: 28px 32px; margin-bottom: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,.04); border: 1px solid var(--border); }
-  h2 { color: var(--primary-dark); margin-top: 0;
-       border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
-  h3 { color: var(--ink); margin-top: 24px; }
-
-  /* ========== NAV CHIPS ========== */
-  .nav-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
-  .nav-chips a {
-    background: var(--surface); border: 1.5px solid var(--border);
-    padding: 8px 16px; border-radius: 999px; text-decoration: none;
-    color: var(--ink); font-size: 14px; font-weight: 500;
+  /* Sticky nav */
+  .nav {
+    position: sticky; top: 0; background: white; border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1rem; z-index: 100; overflow-x: auto; white-space: nowrap;
   }
-  .nav-chips a:hover { border-color: var(--primary); color: var(--primary-dark); }
+  .nav a {
+    display: inline-block; padding: 0.5rem 1rem; margin: 0 0.25rem;
+    border-radius: 999px; text-decoration: none; color: var(--ink);
+    background: var(--bg); font-size: 0.9rem; transition: all 0.2s;
+  }
+  .nav a:hover { background: var(--un-blue); color: white; }
 
-  /* ========== PROMPT CARD (click to copy) ========== */
+  /* Cards */
+  .card {
+    background: var(--card); border-radius: 12px; padding: 1.75rem;
+    margin: 1.5rem 0; border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  h2 { color: var(--un-blue-dark); font-size: 1.8rem; margin: 2.5rem 0 1rem; }
+  h3 { color: var(--ink); font-size: 1.25rem; margin: 1.5rem 0 0.75rem; }
+  h4 { color: var(--muted); font-size: 1rem; margin: 1rem 0 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Prompt card — the star of the show */
   .prompt {
-    background: #f8fafc; border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 16px 20px; margin: 14px 0;
-    cursor: pointer; font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 14px; white-space: pre-wrap; position: relative;
-    transition: border-color .15s;
+    background: #fffef7; border-left: 4px solid var(--amber);
+    padding: 1.25rem 1.5rem; margin: 1rem 0; border-radius: 8px;
+    position: relative; font-family: 'Consolas', monospace; font-size: 0.95rem;
   }
-  .prompt:hover { border-color: var(--primary); }
-  .prompt::before {
-    content: "📋 Click to copy"; position: absolute; top: 8px; right: 12px;
-    font-size: 11px; color: var(--primary-dark); font-family: inherit;
-    background: white; padding: 3px 8px; border-radius: 4px;
-    border: 1px solid var(--border);
+  .prompt .label {
+    position: absolute; top: -10px; left: 16px; background: var(--amber);
+    color: white; font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.6rem;
+    border-radius: 4px; letter-spacing: 1px; font-family: 'Segoe UI', sans-serif;
   }
-  .prompt.copied::before { content: "✓ Copied!"; color: #059669; }
-
-  /* ========== CALLOUTS ========== */
-  .tip, .note, .warn {
-    padding: 12px 16px; border-radius: 8px; margin: 14px 0;
-    border-left: 4px solid;
+  .prompt .copy-btn {
+    position: absolute; top: 12px; right: 12px; background: var(--un-blue);
+    color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 6px;
+    cursor: pointer; font-size: 0.8rem; font-family: 'Segoe UI', sans-serif;
   }
-  .tip  { background: var(--tip-bg);  border-color: var(--tip-border); }
-  .note { background: var(--note-bg); border-color: var(--note-border); }
-  .warn { background: var(--warn-bg); border-color: var(--warn-border); }
-  .tip strong, .note strong, .warn strong { display: block; margin-bottom: 4px; }
+  .prompt .copy-btn:hover { background: var(--un-blue-dark); }
+  .prompt pre { white-space: pre-wrap; margin-top: 0.5rem; color: var(--ink); }
 
-  /* ========== TABLE ========== */
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-  th, td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: left; }
-  th { background: #edf7fc; color: var(--primary-dark); }
+  /* Callouts */
+  .callout { padding: 1rem 1.25rem; border-radius: 8px; margin: 1rem 0; border-left: 4px solid; }
+  .callout.tip    { background: #f0fdf4; border-color: var(--green); }
+  .callout.note   { background: #eff6ff; border-color: var(--un-blue); }
+  .callout.warn   { background: #fef2f2; border-color: var(--red); }
+  .callout strong { display: block; margin-bottom: 0.3rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
 
-  footer { text-align: center; padding: 40px 20px; color: var(--ink-soft); font-size: 14px; }
+  /* Step list */
+  .steps { counter-reset: step; list-style: none; padding: 0; }
+  .steps li {
+    counter-increment: step; position: relative; padding: 0.75rem 0 0.75rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 0; top: 0.75rem;
+    width: 2rem; height: 2rem; background: var(--un-blue); color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem;
+  }
+
+  /* Agency cards grid */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .agency-card {
+    background: var(--card); padding: 1.5rem; border-radius: 12px;
+    border: 1px solid var(--border); border-top: 4px solid var(--un-blue);
+  }
+  .agency-card h4 { color: var(--un-blue-dark); font-size: 1.1rem; text-transform: none; letter-spacing: 0; margin: 0 0 0.5rem; }
+  .agency-tag {
+    display: inline-block; background: var(--un-blue); color: white;
+    font-size: 0.7rem; padding: 0.15rem 0.6rem; border-radius: 4px;
+    letter-spacing: 1px; margin-bottom: 0.5rem;
+  }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: white; border-radius: 8px; overflow: hidden; }
+  th { background: var(--un-blue); color: white; padding: 0.75rem; text-align: left; }
+  td { padding: 0.75rem; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+
+  footer { text-align: center; padding: 3rem 2rem; color: var(--muted); font-size: 0.9rem; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .container { padding: 1rem; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="tagline">✨ Powered by Microsoft Power Platform &amp; Copilot</div>
-  <h1>🚀 Vibe Apps in Power Platform</h1>
-  <p>UN Agency Edition — Build AI-Powered Apps for Humanitarian Operations</p>
-  <div class="meta">
-    <span class="chip">⏱ 60–75 minutes</span>
-    <span class="chip">🟢 Beginner · No coding</span>
-    <span class="chip">🇺🇳 WFP · IFAD · FAO</span>
+<section class="hero">
+  <div class="eyebrow">Vibe Coding Lab</div>
+  <h1>Vibe Apps in Power Platform</h1>
+  <div class="subtitle">Building AI-Powered Apps for Humanitarian Operations</div>
+  <div class="badges">
+    <span class="badge">WFP · IFAD · FAO</span>
+    <span class="badge">60–75 minutes</span>
+    <span class="badge">Beginner · No code</span>
   </div>
-  <div><a class="btn" href="https://vibe.powerapps.com" target="_blank">Open Vibe Power Apps →</a></div>
-</header>
+</section>
 
-<div class="wrap">
+<nav class="nav">
+  <a href="#overview">📖 Overview</a>
+  <a href="#prereqs">✅ Prerequisites</a>
+  <a href="#setup">🛠️ Setup</a>
+  <a href="#exercise-1">1️⃣ Build Your App</a>
+  <a href="#exercise-2">2️⃣ Refine & Extend</a>
+  <a href="#inspiration">💡 Use Cases</a>
+  <a href="#tips">⭐ Best Practices</a>
+</nav>
 
-  <!-- ============ HOW TO USE ============ -->
-  <section>
-    <h2>📋 How to Use This Guide</h2>
-    <ol>
-      <li>Open <strong>Vibe Power Apps</strong> in a new tab — keep this guide alongside</li>
-      <li>Follow <strong>Setup</strong> to create your solution</li>
-      <li>Work through <strong>Exercise 1</strong> to generate your first app</li>
-      <li>Iterate with <strong>Exercise 2</strong> prompts — one at a time</li>
-      <li><strong>Click any prompt box</strong> to copy it to your clipboard</li>
-      <li>Finished early? Try a <strong>Build Inspiration</strong> use case</li>
-    </ol>
-  </section>
+<div class="container">
 
-  <!-- ============ NAV ============ -->
-  <div class="nav-chips">
-    <a href="#overview">📖 Overview</a>
-    <a href="#prereq">🔑 Prerequisites</a>
-    <a href="#setup">⚙️ Setup</a>
-    <a href="#ex1">1️⃣ Exercise 1</a>
-    <a href="#ex2">2️⃣ Exercise 2</a>
-    <a href="#inspo">🛠 Build Inspiration</a>
-    <a href="#tips">💡 Tips</a>
+  <div class="card">
+    <h3>📋 How to Use This Guide</h3>
+    <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+      <li>Work through sections in order — each one builds on the last</li>
+      <li>Copy any prompt with the blue <strong>Copy</strong> button</li>
+      <li>Paste directly into <a href="https://vibe.powerapps.com" target="_blank">vibe.powerapps.com</a></li>
+      <li>Read the tips (green) and notes (blue) as you go — they flag common pitfalls</li>
+      <li>Finish early? Jump to <a href="#inspiration">Build Inspiration</a> for WFP / IFAD / FAO use cases</li>
+    </ul>
   </div>
 
-  <!-- ============ OVERVIEW ============ -->
-  <section id="overview">
-    <h2>📖 Overview</h2>
-    <!-- ⬇⬇ PASTE your doc's "Overview" + "What is Vibe Coding?" text here as <p> tags -->
-    <p>Welcome to the Vibe Coding Lab. In this hands-on lab, you will use vibe coding — the practice of building applications by describing what you need in plain, natural language — to create a fully functional Power App tailored to United Nations operations.</p>
-
+  <h2 id="overview">📖 Overview</h2>
+  <div class="card">
+    <p>Welcome to the Vibe Coding Lab. In this hands-on session you'll use <strong>vibe coding</strong> — building applications by describing what you need in plain language — to create a fully functional Power App for United Nations operations.</p>
+    <h3>What is Vibe Coding?</h3>
+    <p>Rather than writing code, you prompt Power Apps in everyday language. AI generates the data model, screens, and logic. Vibe apps combine <strong>agents</strong> for UI/logic/data, <strong>Dataverse</strong> for storage, and <strong>Managed Platform</strong> for governance.</p>
     <h3>Lab Scenario</h3>
-    <!-- ⬇⬇ PASTE scenario + mission here -->
-    <p><strong>Your role:</strong> Program officer at a UN agency receiving hundreds of weekly inquiries from partners, NGOs, and the public.</p>
-    <p><strong>Your mission:</strong> Build a <em>Program Inquiry &amp; Referral Hub</em> that centralizes intake, categorizes, assigns, and tracks resolution.</p>
-
+    <p>You're a program officer at a UN agency. Inquiries arrive through scattered emails, phone calls, and walk-ins. Requests fall through the cracks. <strong>Your mission:</strong> build a Program Inquiry & Referral Hub that centralizes intake, categorizes inquiries, assigns them, and tracks resolution.</p>
     <h3>Learning Objectives</h3>
-    <!-- ⬇⬇ PASTE bullet list from doc -->
-    <ul>
-      <li>Use natural-language prompts to create a Power App from scratch</li>
-      <li>Understand how AI generates data models and screens</li>
-      <li>Iterate and refine your app using conversational prompts</li>
+    <ul style="padding-left: 1.5rem;">
+      <li>Create a Power App from scratch using natural language</li>
+      <li>Iterate and refine through conversational prompts</li>
+      <li>Apply vibe coding to humanitarian use cases</li>
+      <li>Customize themes, layouts, and workflows without code</li>
     </ul>
-  </section>
+  </div>
 
-  <!-- ============ PREREQ ============ -->
-  <section id="prereq">
-    <h2>🔑 Prerequisites</h2>
-    <ul>
+  <h2 id="prereqs">✅ Prerequisites</h2>
+  <div class="card">
+    <ul style="padding-left: 1.5rem;">
       <li>Power Apps Premium license (included with workshop credentials)</li>
-      <li>Access to a Power Platform environment (facilitator will confirm)</li>
-      <li>Modern browser — Edge or Chrome recommended</li>
+      <li>Access to a Power Platform environment (facilitator will confirm the name)</li>
+      <li>Microsoft Edge or Google Chrome</li>
+      <li><a href="https://learn.microsoft.com/en-us/power-apps/vibe/overview#prerequisites" target="_blank">Power Apps Vibe overview documentation</a></li>
     </ul>
-    <div class="note"><strong>📌 Note</strong>If you have trouble signing in, raise your hand — don't spend more than 2 minutes troubleshooting on your own.</div>
-  </section>
+    <div class="callout note"><strong>Note</strong>Having trouble signing in? Raise your hand — don't spend more than 2 minutes troubleshooting solo.</div>
+  </div>
 
-  <!-- ============ SETUP ============ -->
-  <section id="setup">
-    <h2>⚙️ Setup: Create Your Solution</h2>
-    <ol>
-      <li>Create a new solution named <strong>"UN Vibe Coding Session"</strong></li>
-      <li>Create a new publisher named <strong>"Contoso"</strong> and click <strong>Save</strong></li>
-      <li>Check <strong>"Set as preferred solution"</strong> and click <strong>Create</strong></li>
+  <h2 id="setup">🛠️ Setup: Create Your Solution</h2>
+  <div class="card">
+    <ol class="steps">
+      <li>Create a new solution in Power Apps named <strong>"UN Vibe Coding Session"</strong></li>
+      <li>Create a new publisher named <strong>"Contoso"</strong> and click Save</li>
+      <li>Set as preferred solution and click Create</li>
     </ol>
-    <div class="warn"><strong>⚠️ Important</strong>Vibe is NOT supported in the <em>Default</em> environment. Verify your environment in the bottom-left before building.</div>
-  </section>
+    <div class="callout note"><strong>Note</strong>When you set a preferred solution, all components generated by Vibe — plans, code apps, and data assets — are created inside that solution automatically.</div>
+    <div class="callout warn"><strong>Important</strong>Vibe is NOT supported in the Default environment. Confirm your workshop environment in the bottom-left corner.</div>
+  </div>
 
-  <!-- ============ EXERCISE 1 ============ -->
-  <section id="ex1">
-    <h2>1️⃣ Exercise 1: Create Your App with a Natural-Language Prompt</h2>
+  <h2 id="exercise-1">1️⃣ Exercise 1: Create Your App with a Natural Language Prompt</h2>
 
-    <h3>Step 1 — Navigate to Power Apps</h3>
-    <p>Open: <a href="https://vibe.powerapps.com" target="_blank">https://vibe.powerapps.com</a></p>
+  <h3>Step 1–3: Navigate & Select Environment</h3>
+  <div class="card">
+    <p>Open <a href="https://vibe.powerapps.com" target="_blank">https://vibe.powerapps.com</a>. Confirm the environment name in the bottom-left corner matches your workshop environment.</p>
+  </div>
 
-    <h3>Step 2 — Select Your Environment</h3>
-    <p>Check the Environment selector in the bottom-left. Your facilitator will confirm the name.</p>
+  <h3>Step 4–5: Enter Your App Prompt</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Create a centralized inquiry management solution for a United Nations agency that enables staff to capture, triage, and manage inquiries received from partners, NGOs, government ministries, and the public. The solution should allow users to log and categorize inquiries, assign them to responsible staff members, and track their status through resolution. It should maintain structured records for inquiries, partner organizations, staff contacts, and inquiry categories, while providing staff with clear visibility into workload, inquiry priorities, and resolution progress. A dashboard should summarize inquiry status, priority, and volume to support operational oversight and timely response.</pre>
+  </div>
+  <div class="callout tip"><strong>Tip</strong>Keep prompts high-level. Vibe is designed for iterative refinement.</div>
 
-    <h3>Step 3 — Enter Your App Prompt</h3>
-    <p>Type this prompt into the Vibe text box:</p>
-
-    <!-- ⬇⬇ This is the key pattern. Duplicate this .prompt div for every prompt in your doc. -->
-    <div class="prompt">Create a centralized inquiry management solution for a United Nations agency that enables staff to capture, triage, and manage inquiries received from partners, NGOs, government ministries, and the public. The solution should allow users to log and categorize inquiries, assign them to responsible staff members, and track their status through resolution. It should maintain structured records for inquiries, partner organizations, staff contacts, and inquiry categories, while providing staff with clear visibility into workload, inquiry priorities, and resolution progress. A dashboard should summarize inquiry status, priority, and volume to support operational oversight and timely response.</div>
-
-    <div class="tip"><strong>💡 Tip</strong>Keep prompts high-level. Vibe is designed for iterative refinement.</div>
-
-    <h3>Step 4 — Review the Generated Data Model</h3>
+  <h3>Step 6: Review the Generated Data Model</h3>
+  <div class="card">
+    <p>Watch the agents on the left-side chat panel gather requirements, design the data model, generate a plan, and build the app. Expected tables:</p>
     <table>
-      <thead><tr><th>Table</th><th>Expected Columns</th></tr></thead>
-      <tbody>
-        <tr><td>Inquiries</td><td>Subject, Description, Priority, Status, Date Received, Assigned To, Partner Organization</td></tr>
-        <tr><td>Categories</td><td>Category Name, Description</td></tr>
-        <tr><td>Staff Members</td><td>Full Name, Role, Team, Email, Phone</td></tr>
-        <tr><td>Partner Organizations</td><td>Organization Name, Type, Country, Contact Person, Email</td></tr>
-      </tbody>
+      <tr><th>Table</th><th>Expected Columns</th></tr>
+      <tr><td><strong>Inquiries</strong></td><td>Subject, Description, Type, Priority, Status, Date Received, Resolution Notes, Assigned To</td></tr>
+      <tr><td><strong>Categories</strong></td><td>Category Name, Description</td></tr>
+      <tr><td><strong>Staff Members</strong></td><td>Full Name, Role, Team, Email, Phone</td></tr>
+      <tr><td><strong>Partner Organizations</strong></td><td>Organization Name, Type, Country, Contact Person, Contact Email</td></tr>
     </table>
+  </div>
 
-    <h3>Step 5 — Add Sample Data</h3>
-    <div class="prompt">Add an additional 15 rows of sample data to the inquiry table.</div>
+  <h3>Step 8: Add Sample Data</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add an additional 15 rows of sample data to the inquiry table.</pre>
+  </div>
 
-    <!-- Continue with Steps 6–10 from your doc... -->
-  </section>
+  <h2 id="exercise-2">2️⃣ Exercise 2: Refine & Extend Your App</h2>
 
-  <!-- ============ EXERCISE 2 ============ -->
-  <section id="ex2">
-    <h2>2️⃣ Exercise 2: Refine &amp; Extend Your App</h2>
-    <p>Enter these prompts one at a time in the Copilot chat panel (right side of Power Apps Studio).</p>
+  <h3>Step 10: Light & Dark Mode</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add a light/dark mode toggle to the app. Add a toggle button (e.g. a sun/moon icon) in the top navigation bar that lets the user switch between light and dark mode.</pre>
+  </div>
 
-    <h3>Add Light &amp; Dark Mode</h3>
-    <div class="prompt">Add a light/dark mode toggle to the app. Add a toggle button (e.g. a sun/moon icon) in the top navigation bar that lets the user switch between light and dark mode.</div>
+  <h3>Step 11: Referral Tracking Fields</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add a 'Referring Organization' dropdown to the Inquiry form that pulls from the Partner Organizations table. Also add a 'Response Deadline' date field and a 'Follow-up Required' yes/no toggle.</pre>
+  </div>
 
-    <h3>Add Referral Tracking Fields</h3>
-    <div class="prompt">Add a 'Referring Organization' dropdown to the Inquiry form that pulls from the Partner Organizations table. Also add a 'Response Deadline' date field and a 'Follow-up Required' yes/no toggle.</div>
+  <h3>Step 12: Dashboard Screen</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add a new dashboard screen that shows: the total number of open inquiries, the number of inquiries by category displayed as a bar chart, a list of overdue items where the response deadline has passed, and the number of high-priority inquiries currently unassigned.</pre>
+  </div>
 
-    <h3>Create a Dashboard Screen</h3>
-    <div class="prompt">Add a new dashboard screen that shows: the total number of open inquiries, the number of inquiries by category displayed as a bar chart, a list of overdue items where the response deadline has passed, and the number of high-priority inquiries currently unassigned.</div>
+  <h3>Step 13: Expanded Status Workflow</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Update the Inquiry status field to include these options: New, Under Review, Assigned, In Progress, Pending Partner Response, Resolved, and Closed. Add a 'Status History' section on the detail screen that logs when the status changes and who changed it.</pre>
+  </div>
 
-    <!-- Paste the rest of your Exercise 2 prompts the same way -->
-  </section>
+  <h3>Step 14: UN Branding</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Update the app's color theme to use UN Blue (#009EDB) as the primary color and white text for headers. Add the title 'UN Inquiry Hub' as a header banner on all screens. Make the navigation bar consistent and visible on every screen.</pre>
+  </div>
 
-  <!-- ============ BUILD INSPIRATION ============ -->
-  <section id="inspo">
-    <h2>🛠 Build Inspiration — Additional UN Use Cases</h2>
-    <p>Finished early? Pick one and build from scratch.</p>
+  <h3>Step 15: Search & Filtering</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add a search bar to the inquiry list screen that searches across subject, description, and partner organization name. Add filter buttons for Status (Open, In Progress, Resolved) and Priority (High, Medium, Low).</pre>
+  </div>
 
-    <h3>🍚 WFP · Food Distribution Tracker</h3>
-    <p>Track and monitor food distribution activities across field offices.</p>
-    <div class="prompt">Build a canvas app called "WFP Distribution Tracker" to record and monitor food distribution activities. Include tables for: Distribution Events, Commodities, Field Offices, and Beneficiary Groups. Add a dashboard showing total distributions this month and tonnage delivered vs. planned.</div>
+  <h3>Step 16: Urgent Items Highlight</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>On the dashboard screen, add an 'Urgent Attention' section that highlights inquiries with High priority that have been in 'New' status for more than 24 hours. Display these in red-bordered cards with the subject, partner organization, and time since received.</pre>
+  </div>
 
-    <!-- Add the other 8 use cases (WFP Feedback Hub, WFP Emergency Board,
-         IFAD Grant Tracker, IFAD Farmer Finance, IFAD M&E Tracker,
-         FAO Pest Watch, FAO Advisory Hub, FAO Field Data) the same way -->
-  </section>
+  <h3>Step 17: Team Referral Workflow</h3>
+  <div class="prompt">
+    <span class="label">PROMPT</span>
+    <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    <pre>Add a 'Refer to Team' button on the inquiry detail screen. When clicked, it should display a dropdown of available teams: Food Distribution, Livelihoods & Resilience, Nutrition, Logistics & Supply Chain, External Relations, and Emergency Response. When a team is selected, update the inquiry's assigned team and change the status to 'Assigned.'</pre>
+  </div>
 
-  <!-- ============ TIPS ============ -->
-  <section id="tips">
-    <h2>💡 Tips &amp; Best Practices</h2>
+  <h2 id="inspiration">💡 Build Inspiration: Additional UN Use Cases</h2>
+  <p style="margin: 1rem 0;">Finished early? Pick one and build it from scratch.</p>
+
+  <h3>World Food Programme (WFP)</h3>
+  <div class="grid">
+    <div class="agency-card">
+      <span class="agency-tag">WFP</span>
+      <h4>Food Distribution Tracker</h4>
+      <p>Track distribution activities across field offices — events, beneficiary counts, commodities, tonnage. Flag shortfalls.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">WFP</span>
+      <h4>Beneficiary Feedback Hub</h4>
+      <p>Community feedback system for complaints and suggestions. Categorize, route, track resolution.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">WFP</span>
+      <h4>Emergency Response Board</h4>
+      <p>Coordinate emergency operations — sit reps, resource requests, deployments, inter-agency activities.</p>
+    </div>
+  </div>
+
+  <h3>International Fund for Agricultural Development (IFAD)</h3>
+  <div class="grid">
+    <div class="agency-card">
+      <span class="agency-tag">IFAD</span>
+      <h4>Rural Grant Tracker</h4>
+      <p>Manage grant lifecycle from application through disbursement. Track milestones and progress.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">IFAD</span>
+      <h4>Farmer Loan Portal</h4>
+      <p>Digital intake for smallholder farmer loan applications. Review, score, and approve.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">IFAD</span>
+      <h4>M&E Tracker</h4>
+      <p>Field-level monitoring — site visits, indicator progress, beneficiary interviews.</p>
+    </div>
+  </div>
+
+  <h3>Food and Agriculture Organization (FAO)</h3>
+  <div class="grid">
+    <div class="agency-card">
+      <span class="agency-tag">FAO</span>
+      <h4>Pest & Disease Early Warning</h4>
+      <p>Track outbreak reports with location, severity, and affected species. Aggregate for early warning.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">FAO</span>
+      <h4>Advisory Hub</h4>
+      <p>Connect farmers with technical advisors. Submit questions, track follow-up.</p>
+    </div>
+    <div class="agency-card">
+      <span class="agency-tag">FAO</span>
+      <h4>Fisheries & Livestock Data</h4>
+      <p>Mobile-friendly data collection for catch data, herd sizes, health indicators, market prices.</p>
+    </div>
+  </div>
+
+  <h2 id="tips">⭐ Best Practices for Vibe Coding</h2>
+  <div class="card">
     <h3>Crafting Effective Prompts</h3>
-    <ul>
-      <li><strong>Be specific:</strong> "Add a Priority dropdown with High, Medium, Low" beats "add a priority field"</li>
-      <li><strong>Name things:</strong> Don't let the AI guess — tell it what you want each thing called</li>
+    <ul style="padding-left: 1.5rem;">
+      <li><strong>Be specific:</strong> "Add a Priority dropdown with options High, Medium, Low" works better than "add a priority field"</li>
+      <li><strong>Name your tables and fields:</strong> tell the AI exactly what you want things called</li>
+      <li><strong>Describe relationships:</strong> "Link the Inquiry to the Partner Organizations table through a lookup field"</li>
       <li><strong>One feature per prompt</strong> when refining</li>
     </ul>
-  </section>
+    <h3>Iterative Development</h3>
+    <ul style="padding-left: 1.5rem;">
+      <li>Start simple, layer on complexity</li>
+      <li>Test after every change</li>
+      <li>Rephrase with more detail rather than starting over</li>
+      <li>Save frequently</li>
+    </ul>
+  </div>
 
 </div>
 
 <footer>
-  <p><strong>Vibe Apps in Power Platform — UN Agency Edition</strong></p>
-  <p>Workshop led by Brianna Morris · Microsoft</p>
+  Built for WFP · IFAD · FAO workshop · Brianna Morris, Microsoft<br>
+  <small>Questions? Reach out on Teams.</small>
 </footer>
 
-<!-- ============ CLICK-TO-COPY SCRIPT ============ -->
 <script>
-  document.querySelectorAll('.prompt').forEach(el => {
-    el.addEventListener('click', () => {
-      navigator.clipboard.writeText(el.innerText.replace(/^📋 Click to copy\n?|^✓ Copied!\n?/g, '').trim());
-      el.classList.add('copied');
-      setTimeout(() => el.classList.remove('copied'), 1500);
+  function copyPrompt(btn) {
+    const text = btn.nextElementSibling.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
     });
-  });
+  }
 </script>
 
 </body>
